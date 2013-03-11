@@ -31,15 +31,15 @@
 			},
 			
 			text:	{
-				welcome:	[	'title',
-								'goodLuck',
-								'quickHints',
-								'aCircleHint1', 'aCircleHint2',
-								'circleHint1', 'circleHint2', 'circleHint3', 'circleHint4',
-								'greetings1', 'greetings2', 'greetings3', 'greetings4',
-								'pCircleHint1', 'pCircleHint2', 'pCircleHint3',
-								'scoreHint1', 'scoreHint2' ],
-				_:			[ 'continuing', 'difficulty', 'level', 'score', 'quit', 'limit', 'skipped', 'highScore', 'worseScore', 'sameScore', 'completed' ]
+				intro:	[	'title',
+							'goodLuck',
+							'quickHints',
+							'aCircleHint1', 'aCircleHint2',
+							'circleHint1', 'circleHint2', 'circleHint3', 'circleHint4',
+							'greetings1', 'greetings2', 'greetings3', 'greetings4',
+							'pCircleHint1', 'pCircleHint2', 'pCircleHint3',
+							'scoreHint1', 'scoreHint2' ],
+				_:	[ 'continuing', 'difficulty', 'level', 'score', 'quit', 'limit', 'skipped', 'highScore', 'worseScore', 'sameScore', 'completed' ]
 			},
 			
 			icon:	[ 'empty', 'plus', 'minus', 'equal' ],

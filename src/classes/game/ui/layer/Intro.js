@@ -1,4 +1,4 @@
-Kinetic.Welcome = (function() {
+Kinetic.Intro = (function() {
 	var TITLE_HEIGHT = 23;
 	var GOOD_LUCK_HEIGHT = 7;
 	var QUICK_HINTS_HEIGHT = 6;
@@ -44,7 +44,7 @@ Kinetic.Welcome = (function() {
 			
 			this.add(this[name] = new Kinetic.ProportionalImage({
 				height: unit * size,
-				image: Image.text.welcome[name],
+				image: Image.text.intro[name],
 				opacity: opacity === undefined ? 0 : 1
 			}));
 
@@ -58,7 +58,7 @@ Kinetic.Welcome = (function() {
 			this.add(this[conf.name] = new Kinetic.TextGroup({ width: w * conf.w, height: h * conf.h }));
 			
 			/*jshint boss:true */
-			for (var i = 1, img; img = Image.text.welcome[conf.name + i]; i++) {
+			for (var i = 1, img; img = Image.text.intro[conf.name + i]; i++) {
 				this[conf.name].addText(img);
 			}
 
@@ -198,7 +198,7 @@ Kinetic.Welcome = (function() {
 			});
 		},
 		
-		animateWelcome: function(callback) {
+		animateIntro: function(callback) {
 			this.title.transitionTo({
 				duration: TITLE_ANIMATION_TIME,
 				opacity: 0,
@@ -212,7 +212,7 @@ Kinetic.Welcome = (function() {
 		
 		destroy: function() {
 			Kinetic.Group.prototype.destroy.call(this);
-			delete Image.text.welcome;
+			delete Image.text.intro;
 		}
 	});
 	

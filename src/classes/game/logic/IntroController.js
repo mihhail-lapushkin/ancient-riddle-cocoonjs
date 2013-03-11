@@ -1,26 +1,26 @@
-WelcomeController = $.Class({
+IntroController = $.Class({
 	extend: Controller,
-	ctrName: 'welcome',
+	ctrName: 'intro',
 	ctrInit: function() {
-		if (UI.welcome) {
-			UI.welcome.on('hintScore', this.hintScore.bind(this));
-			UI.welcome.on('restoreScore', this.restoreScore.bind(this));
-			UI.welcome.on('hintActiveCircle', this.hintActiveCircle.bind(this));
-			UI.welcome.on('restoreActiveCircle', this.restoreActiveCircle.bind(this));
-			UI.welcome.on('hintPassiveCircle', this.hintPassiveCircle.bind(this));
-			UI.welcome.on('restorePassiveCircle', this.restorePassiveCircle.bind(this));
-			UI.welcome.on('hintCircle', this.hintCircle.bind(this));
-			UI.welcome.on('restoreCircle', this.restoreCircle.bind(this));
+		if (UI.intro) {
+			UI.intro.on('hintScore', this.hintScore.bind(this));
+			UI.intro.on('restoreScore', this.restoreScore.bind(this));
+			UI.intro.on('hintActiveCircle', this.hintActiveCircle.bind(this));
+			UI.intro.on('restoreActiveCircle', this.restoreActiveCircle.bind(this));
+			UI.intro.on('hintPassiveCircle', this.hintPassiveCircle.bind(this));
+			UI.intro.on('restorePassiveCircle', this.restorePassiveCircle.bind(this));
+			UI.intro.on('hintCircle', this.hintCircle.bind(this));
+			UI.intro.on('restoreCircle', this.restoreCircle.bind(this));
 		}
 	},
 	
-	_moveToWelcome: function(object) {
-		object.moveTo(UI.welcome);
+	_moveToIntro: function(object) {
+		object.moveTo(UI.intro);
 		object.moveDown();
 	},
 	
 	hintScore: function() {
-		this._moveToWelcome(this._t = UI.game.hud.turns);
+		this._moveToIntro(this._t = UI.game.hud.turns);
 		this._to = this._t.getOpacity();
 		this._t.setOpacity(1);
 	},
@@ -40,7 +40,7 @@ WelcomeController = $.Class({
 		}.bind(this));
 		
 		this._ac.forEach(function(c) {
-			this._moveToWelcome(c);
+			this._moveToIntro(c);
 		}.bind(this));
 	},
 	
@@ -60,7 +60,7 @@ WelcomeController = $.Class({
 		}.bind(this));
 		
 		this._pc.forEach(function(c) {
-			this._moveToWelcome(c);
+			this._moveToIntro(c);
 		}.bind(this));
 	},
 	
@@ -71,8 +71,8 @@ WelcomeController = $.Class({
 	},
 	
 	hintCircle: function() {
-		this._moveToWelcome(this._con = UI.game.connections);
-		this._moveToWelcome(this._cir = UI.game.circles);
+		this._moveToIntro(this._con = UI.game.connections);
+		this._moveToIntro(this._cir = UI.game.circles);
 	},
 	
 	restoreCircle: function() {
