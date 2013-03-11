@@ -15,7 +15,7 @@ GameController = $.Class({
 		delete UI.continuing;
 		
 		UI.fading.longFadeOut(function() {
-			UI.intro.animateWelcome(function() {
+			UI.intro.animateIntro(function() {
 				this.newGame(1, 1, this.showHints.bind(this));
 			}.bind(this));
 		}.bind(this));
