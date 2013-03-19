@@ -1,107 +1,13 @@
-# Rich OOP features in 600 bytes of code!
-##### Based on [Simple JavaScript Inheritance](http://ejohn.org/blog/simple-javascript-inheritance/) By John Resig
+# Ancient Riddle [ [LIVE DEMO](http://www.ignite.ee/html5/ancient-riddle/index.html) ]
+### An HTML5 mobile game
+![a better version](http://s17.postimage.org/maw37811b/Screen_Shot_2013_03_08_at_18_47_42.png)
 
-This plugin aims to give a simple, lightweight OOP bootstrap for JavaScript without the heavy stuff like automatic dependency resolution and other "full solutions for your enterprise". Tiny amount of plain cross-browser JS and a solid [Jasmine](http://pivotal.github.com/jasmine/) test suite is all there is!
+The proof-of-concept game, which shows that HTML5 Canvas can be used to create real mobile games. It runs in the desktop browser, Android and iOS. To package it for mobile platforms I used [CocoonJS](http://www.ludei.com/tech/cocoonjs).
 
-## Defining classes
-    Person = Base.extend({
-      walking: false, // field
-  
-  	  init: function(name) { // constructor
-  		this.name = name;
-  	  }
-  	
-  	  walk: function() { // method
-  		this.walking = true;
-  	  }
-    });
-    
-    var p = new Person("John Smith");
-    p.walk();
-    
-    console.log(p.name); // "John Smith"
-    console.log(p.walking); // true
-    
-## Static fields and methods
-    CommunicationMethod = Base.extend({
-      statics: {
-      	VERBAL: 1,
-      	NON_VERBAL: 2
-      }
-    });
+Read my [blog post](http://mihhaillapushkin.wordpress.com/2013/03/11/the-makings-of-a-mobile-canvas-game) for more details about this project.
 
-    Language = CommunicationMethod.extend({
-      statics: {
-      	EN: "English",
-      	EE: "Estonian",
-      	getDefault: function() {
-      		return Language.EN;
-      	}
-      }
-      
-      init: function(lang) {
-      	this.lang = lang;
-      }
-    });
-    
-    console.log(CommunicationMethod.VERBAL); // 1
-    console.log(Language.VERBAL); // 1
-    console.log(Language.EE); // "Estonian"
-    console.log(Language.getDefault()); // "English"
-    
-## Inheritance and parent constructors
-    Person = Base.extend({
-  	  walking: false,
-  
-  	  init: function(name) {
-  		this.name = name;
-  	  }
-  	
-  	  walk: function() {
-  		this.walking = true;
-  	  }
-    });
-    
-    FlyingPerson = Person.extend({
-  	  flying: false,
-  
-  	  init: function(name) {
-  		this._super(name); // call parent constructor
-  	  }
-  	
-  	  fly: function() {
-  		this.flying = true;
-  	  }
-    });
-    
-    var p = new FlyingPerson("John Smith");
-    p.walk();
-    p.fly();
-    
-    console.log(p.name); // "John Smith"
-    console.log(p.walking); // true
-    console.log(p.flying); // true
+PS — Levels are mostly dummies. Any contributions to make a full level suite are welcome :)
 
-## Calling overridden methods
-    Worker = Base.extend({
-  	  work: function() {
-  		// do work
-  	  }
-    });
-    
-    LazyWorker = Worker.extend({
-  	  work: function() {
-  		if (Calendar.getDayOfWeek() == 'Monday') return;
-  		
-  		this._super(); // call parent method 'work'
-  	  }
-    });
-    
-## instanceof
-    Child = Base.extend({});
-    ChildOfChild = Child.extend({});
-    
-    console.log(new ChildOfChild() instanceof Child); // true
-    console.log(new Child() instanceof Child); // true
-
-See tests for more examples!
+See also:
+* The [first version](https://github.com/mihhail-lapushkin/Solve-Me) of the game
+* [JavaScript compiler](https://github.com/mihhail-lapushkin/CocoonJS-Compiler) that was created for this project
