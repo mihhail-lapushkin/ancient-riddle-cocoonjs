@@ -1,79 +1,82 @@
 <meta charset='utf-8'>
 
-<!--[ Dev Config ]-->
+<!--[ Config ]-->
 
-	<script src='src/dev-conf.js'></script>
+<script src='conf/dev-conf.js'></script>
+<script src='conf/conf.js'></script>
 
 <!--[ Libraries ]-->
 
-	<script src='src/libs/kineticjs.js'></script>
+<script src='src/libs/kineticjs-debug.js'></script>
 
 <!--[ Library Add-on's ]-->
 
-	<script src='src/libs/addon/kineticjs.js'></script>
-	<script src='src/libs/addon/cocoonjs.js'></script>
+<script src='src/libs/addon/cocoonjs.js'></script>
+<script src='src/libs/addon/kineticjs.js'></script>
 
 <!--[ Classes ]-->
 
-	<script src='src/classes/common/jslang/Array.js'></script>
-	<script src='src/classes/common/jslang/Function.js'></script>
-	<script src='src/classes/common/jslang/String.js'></script>
-	<script src='src/classes/common/util/Utils.js'></script>
-	<script src='src/classes/common/util/Device.js'></script>
-	<script src='src/classes/common/util/Env.js'></script>
-	<script src='src/classes/common/evt/Event.js'></script>
-	<script src='src/classes/common/resource/JSON.js'></script>
-	<script src='src/classes/common/resource/loader/AbstractLoader.js'></script>
-	<script src='src/classes/common/resource/loader/ImageLoader.js'></script>
-	<script src='src/classes/common/resource/loader/AudioLoader.js'></script>
-	<script src='src/classes/common/data/DPI.js'></script>
-	<script src='src/classes/common/data/PersistedObject.js'></script>
-	<script src='src/classes/common/math/Random.js'></script>
-	<script src='src/classes/common/math/geom/Line.js'></script>
-	<script src='src/classes/common/math/geom/Point.js'></script>
-	<script src='src/classes/common/math/graph/ForceDirected.js'></script>
+<script src='src/classes/common/jslang/Array.js'></script>
+<script src='src/classes/common/jslang/Function.js'></script>
+<script src='src/classes/common/jslang/String.js'></script>
+<script src='src/classes/common/util/Utils.js'></script>
+<script src='src/classes/common/util/Device.js'></script>
+<script src='src/classes/common/util/Env.js'></script>
+<script src='src/classes/common/evt/Event.js'></script>
+<script src='src/classes/common/resource/JSON.js'></script>
+<script src='src/classes/common/resource/loader/AbstractLoader.js'></script>
+<script src='src/classes/common/resource/loader/ImageLoader.js'></script>
+<script src='src/classes/common/resource/loader/AudioLoader.js'></script>
+<script src='src/classes/common/data/DPI.js'></script>
+<script src='src/classes/common/data/PersistedObject.js'></script>
+<script src='src/classes/common/math/Random.js'></script>
+<script src='src/classes/common/math/geom/Line.js'></script>
+<script src='src/classes/common/math/geom/Point.js'></script>
+<script src='src/classes/common/math/graph/ForceDirected.js'></script>
 
 
-	<script src='src/classes/game/data/DAO.js'></script>
-	<script src='src/classes/game/data/LevelData.js'></script>
-	<script src='src/classes/game/data/const/Level.js'></script>
-	<script src='src/classes/game/data/const/Difficulty.js'></script>
-	<script src='src/classes/game/audio/SoundManager.js'></script>
-	<script src='src/classes/game/ui/object/ProportionalImage.js'></script>
-	<script src='src/classes/game/ui/object/TextGroup.js'></script>
-	<script src='src/classes/game/ui/object/button/AbstractButton.js'></script>
-	<script src='src/classes/game/ui/object/button/SimpleButton.js'></script>
-	<script src='src/classes/game/ui/object/button/ToggleButton.js'></script>
-	<script src='src/classes/game/ui/object/button/ProgressCircle.js'></script>
-	<script src='src/classes/game/ui/object/circle/Connection.js'></script>
-	<script src='src/classes/game/ui/object/circle/GameCircle.js'></script>
-	<script src='src/classes/game/ui/object/counter/Counter.js'></script>
-	<script src='src/classes/game/ui/object/counter/CircledCounter.js'></script>
-	<script src='src/classes/game/ui/object/counter/DoubleCounter.js'></script>
-	<script src='src/classes/game/ui/anim/ExtraTweens.js'></script>
-	<script src='src/classes/game/ui/anim/StepAnimation.js'></script>
-	<script src='src/classes/game/ui/anim/LayoutManager.js'></script>
-	<script src='src/classes/game/ui/layer/Loading.js'></script>
-	<script src='src/classes/game/ui/layer/AbstractSlidingContainer.js'></script>
-	<script src='src/classes/game/ui/layer/GameOver.js'></script>
-	<script src='src/classes/game/ui/layer/Menu.js'></script>
-	<script src='src/classes/game/ui/layer/Quit.js'></script>
-	<script src='src/classes/game/ui/layer/Fading.js'></script>
-	<script src='src/classes/game/ui/layer/Background.js'></script>
-	<script src='src/classes/game/ui/layer/Game.js'></script>
-	<script src='src/classes/game/ui/layer/Intro.js'></script>
-	<script src='src/classes/game/ui/layer/Continuing.js'></script>
-	<script src='src/classes/game/ui/layer/HUD.js'></script>
-	<script src='src/classes/game/ui/layer/InactiveDisplay.js'></script>
-	<script src='src/classes/game/ui/layer/GameOver.js'></script>
-	<script src='src/classes/game/ui/UI.js'></script>
-	<script src='src/classes/game/logic/Controller.js'></script>
-	<script src='src/classes/game/logic/InitController.js'></script>
-	<script src='src/classes/game/logic/IntroController.js'></script>
-	<script src='src/classes/game/logic/GameController.js'></script>
-	<script src='src/classes/game/logic/GameOverController.js'></script>
-	<script src='src/classes/game/logic/ButtonController.js'></script>
+<script src='src/classes/game/data/DAO.js'></script>
+<script src='src/classes/game/data/LevelData.js'></script>
+<script src='src/classes/game/data/const/Level.js'></script>
+<script src='src/classes/game/data/const/Difficulty.js'></script>
+<script src='src/classes/game/audio/SoundManager.js'></script>
+<script src='src/classes/game/ui/object/util/ProportionalImage.js'></script>
+<script src='src/classes/game/ui/object/util/TextGroup.js'></script>
+<script src='src/classes/game/ui/object/util/PressCatcher.js'></script>
+<script src='src/classes/game/ui/object/widget/ProgressBar.js'></script>
+<script src='src/classes/game/ui/object/button/AbstractButton.js'></script>
+<script src='src/classes/game/ui/object/button/SimpleButton.js'></script>
+<script src='src/classes/game/ui/object/button/ToggleButton.js'></script>
+<script src='src/classes/game/ui/object/button/ProgressCircle.js'></script>
+<script src='src/classes/game/ui/object/circle/Connection.js'></script>
+<script src='src/classes/game/ui/object/circle/GameCircle.js'></script>
+<script src='src/classes/game/ui/object/counter/Counter.js'></script>
+<script src='src/classes/game/ui/object/counter/CircledCounter.js'></script>
+<script src='src/classes/game/ui/object/counter/DoubleCounter.js'></script>
+<script src='src/classes/game/ui/anim/ExtraEasings.js'></script>
+<script src='src/classes/game/ui/anim/StepAnimation.js'></script>
+<script src='src/classes/game/ui/anim/LayoutManager.js'></script>
+<script src='src/classes/game/ui/layer/Loading.js'></script>
+<script src='src/classes/game/ui/layer/AbstractSlidingContainer.js'></script>
+<script src='src/classes/game/ui/layer/GameOver.js'></script>
+<script src='src/classes/game/ui/layer/Menu.js'></script>
+<script src='src/classes/game/ui/layer/Quit.js'></script>
+<script src='src/classes/game/ui/layer/Fading.js'></script>
+<script src='src/classes/game/ui/layer/Background.js'></script>
+<script src='src/classes/game/ui/layer/Game.js'></script>
+<script src='src/classes/game/ui/layer/Intro.js'></script>
+<script src='src/classes/game/ui/layer/Message.js'></script>
+<script src='src/classes/game/ui/layer/HUD.js'></script>
+<script src='src/classes/game/ui/layer/InactiveDisplay.js'></script>
+<script src='src/classes/game/ui/layer/GameOver.js'></script>
+<script src='src/classes/game/ui/UI.js'></script>
+<script src='src/classes/game/logic/Controller.js'></script>
+<script src='src/classes/game/logic/InitController.js'></script>
+<script src='src/classes/game/logic/IntroController.js'></script>
+<script src='src/classes/game/logic/GameController.js'></script>
+<script src='src/classes/game/logic/GameOverController.js'></script>
+<script src='src/classes/game/logic/ButtonController.js'></script>
 
 <!--[ Init Application ]-->
 
-	<script src='src/bootstrap.js'></script>
+<script src='src/bootstrap.js'></script>
