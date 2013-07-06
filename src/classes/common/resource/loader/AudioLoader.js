@@ -34,7 +34,7 @@ AudioLoader = (function() {
       var path = basePath + file + '.' + ext;
       var res = new Audio();
       
-      res.oncanplaythrough = onload;
+      res.addEventListener('canplay', onload);
       res.src = path;
 
       files[file] = res;
