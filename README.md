@@ -6,8 +6,6 @@ The proof-of-concept game, which shows that HTML5 Canvas can be used to create r
 
 Read my [blog post](http://mihhaillapushkin.wordpress.com/2013/03/11/the-makings-of-a-mobile-canvas-game) for more details about this project.
 
-PS — Levels are mostly dummies. Any contributions to make a full level suite are welcome :)
-
 See also:
 * The [first version](https://github.com/mihhail-lapushkin/Solve-Me) of the game
 * [JavaScript compiler](https://github.com/mihhail-lapushkin/CocoonJS-Compiler) that was created for this project
