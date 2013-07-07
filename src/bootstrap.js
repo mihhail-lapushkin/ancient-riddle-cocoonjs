@@ -21,11 +21,9 @@
   
   if (!Env.isDev) {
     if (Device.is('android 2.3') || Device.is('ipad_1')) {
-      Config.resources.audio.files.music = [];
+      delete Config.resources.audio.files.music;
       DAO.musicMuted(true);
-    }
-    
-    if (Device.is('ipad_1')) {
+      
       ImageLoader.isXDPI(function() { return false; });
     }
   }

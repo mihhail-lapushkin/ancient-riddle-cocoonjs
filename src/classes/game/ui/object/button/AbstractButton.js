@@ -11,7 +11,7 @@ Kinetic.AbstractButton = (function() {
 
       this._delayListening();
       this._playPressSound();
-      //this._vibrateDevice();
+      this._vibrateDevice();
     },
 
     _delayListening: function() {
