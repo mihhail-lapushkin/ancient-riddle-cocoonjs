@@ -1,6 +1,6 @@
-# Ancient Riddle [ [LIVE DEMO](http://www.ignite.ee/html5/ancient-riddle/index.html) ]
+# Ancient Riddle [ [LIVE DEMO](http://www.ignite.ee/html5/ancient-riddle/index.html) ] [ [Android](https://play.google.com/store/apps/details?id=ee.ignite.ancientriddle) ]
 ### An HTML5 mobile game
-![a better version](http://s17.postimage.org/maw37811b/Screen_Shot_2013_03_08_at_18_47_42.png)
+![screenshot](http://s17.postimage.org/maw37811b/Screen_Shot_2013_03_08_at_18_47_42.png)
 
 The proof-of-concept game, which shows that HTML5 Canvas can be used to create real mobile games. It runs in the desktop browser, Android and iOS. To package it for mobile platforms I used [CocoonJS](http://www.ludei.com/tech/cocoonjs).
 
