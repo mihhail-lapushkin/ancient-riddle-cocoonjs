@@ -1,6 +1,6 @@
 Kinetic.StepAnimation = (function() {
   var Class = $.Class({
-    _init: function(config) {
+    _init_: function(config) {
       this.onStep(config.onStep);
       this.onComplete(config.onComplete);
 

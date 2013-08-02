@@ -1,6 +1,6 @@
 Kinetic.TextGroup = (function() {
   var Class = $.Class({
-    _init: function(config) {
+    _init_: function(config) {
       config.listening = false;
 
       Kinetic.Group.call(this, config);

@@ -1,5 +1,5 @@
 Line = $.Class({
-  _init: function(x1, y1, x2, y2) {
+  _init_: function(x1, y1, x2, y2) {
     if (x2 == x1) {
       this.m = 0;
       this.c = x1;

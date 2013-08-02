@@ -8,7 +8,7 @@ LevelData = (function() {
   var CONNS = 4;
 
   var width = 0, height = 0;
-  var isLocked = Config.resources.levels.meta.locked;
+  var isInitiallyLocked = Config.resources.levels.meta.initiallyLocked;
 
   return {
     setLevelDimensions: function(w, h) {
@@ -61,8 +61,8 @@ LevelData = (function() {
       JSON.load(Config.resources.levels.pathFormat.format(d, l), callback);
     },
 
-    isLocked: function(d, l) {
-      return isLocked[d - 1][l - 1] === 1;
+    isInitiallyLocked: function(d, l) {
+      return isInitiallyLocked[d - 1][l - 1] === 1;
     },
 
     toCode: function(d, l) {

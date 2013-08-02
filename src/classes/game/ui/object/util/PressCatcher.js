@@ -1,6 +1,6 @@
 Kinetic.PressCatcher = (function() {
   var Class = $.Class({
-    _init: function(config) {
+    _init_: function(config) {
       config.image = Image.bg.trans;
 
       Kinetic.Rect.call(this, config);

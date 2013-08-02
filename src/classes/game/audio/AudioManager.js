@@ -1,4 +1,4 @@
-SoundManager = (function() {
+AudioManager = (function() {
   var DELAY_BETWEEN_TRACKS = 3;
   var tracks = [];
   var currentTrack;

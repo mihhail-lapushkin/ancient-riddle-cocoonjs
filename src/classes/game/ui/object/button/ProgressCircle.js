@@ -3,7 +3,7 @@ Kinetic.ProgressCircle = (function() {
   var OVERLAY_COLOR = 'black';
 
   var Class = $.Class({
-    _init: function(config) {
+    _init_: function(config) {
       Kinetic.Group.call(this, config);
       Kinetic.AbstractButton.call(this, config);
 

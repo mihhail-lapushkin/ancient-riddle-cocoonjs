@@ -4,7 +4,7 @@ Kinetic.Quit = (function() {
   var BUTTON_SIZE = 0.5;
 
   var Class = $.Class({
-    _init: function(config) {
+    _init_: function(config) {
       config.visible = false;
 
       Kinetic.Group.call(this, config);

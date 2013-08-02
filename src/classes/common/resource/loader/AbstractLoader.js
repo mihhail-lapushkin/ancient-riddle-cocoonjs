@@ -1,6 +1,6 @@
 AbstractLoader = (function() {
   return $.Class({
-    _init: function() {
+    _init_: function() {
       this.loaded = this.loaded.bind(this);
 
       this.reset();

@@ -2,7 +2,7 @@ Controller = (function() {
   var ctrs = {};
 
   var Class = $.Class({
-    _init: function(name) {
+    _init_: function(name) {
       ctrs[name] = this;
     },
 

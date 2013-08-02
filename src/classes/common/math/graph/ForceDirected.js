@@ -3,7 +3,7 @@ ForceDirected = (function() {
   var BASE_VALUE = 800;
 
   return $.Class({
-    _init: function(config) {
+    _init_: function(config) {
       config.bvFactor = BASE_VALUE / config.maxDim;
 
       $.copy(this, config);

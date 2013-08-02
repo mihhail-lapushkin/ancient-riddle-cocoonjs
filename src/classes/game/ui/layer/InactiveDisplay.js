@@ -4,7 +4,7 @@ Kinetic.InactiveDisplay = (function() {
   var HEIGHT = 15;
 
   var Class = $.Class({
-    _init: function(config) {
+    _init_: function(config) {
       config.visible = false;
       config.opacity = 0;
 

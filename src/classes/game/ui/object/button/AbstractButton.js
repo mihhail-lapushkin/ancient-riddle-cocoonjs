@@ -2,7 +2,7 @@ Kinetic.AbstractButton = (function() {
   var PRESS_DELAY = 0.5;
 
   var Class = $.Class({
-    _init: function() {
+    _init_: function() {
       this.on('click tap', this._onPressAbstract);
     },
 
@@ -18,12 +18,12 @@ Kinetic.AbstractButton = (function() {
       this.setListening(false);
       $.delay(PRESS_DELAY, function() {
         this.setListening(true);
-        this.getLayer().draw();
+        this.getLayer().drawHit();
       }.bind(this));
     },
 
     _playPressSound: function() {
-      SoundManager.play(Audio.sound.tap.button);
+      AudioManager.play(Audio.sound.tap.button);
     },
 
     _vibrateDevice: function() {

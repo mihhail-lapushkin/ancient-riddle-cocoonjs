@@ -5,7 +5,7 @@ Kinetic.Loading = (function() {
   var BAR_HEIGHT = 2.2;
 
   var Class = $.Class({
-    _init: function(config) {
+    _init_: function(config) {
       config.listening = false;
 
       Kinetic.Group.call(this, config);

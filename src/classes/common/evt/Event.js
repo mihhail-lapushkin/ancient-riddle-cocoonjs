@@ -61,7 +61,7 @@ Event = (function() {
     devicePaused: function(fn) {
       switch (Env) {
         case Env.COCOON_JS:
-          Env.callAPI('App', 'onsuspended');
+          Env.callAPI('IDTK_APP', 'App', 'onsuspended');
           break;
         case Env.PHONEGAP:
           bind(document, 'pause', fn);
@@ -75,7 +75,7 @@ Event = (function() {
     deviceResumed: function(fn) {
       switch (Env) {
         case Env.COCOON_JS:
-          Env.callAPI('App', 'onactivated');
+          Env.callAPI('IDTK_APP', 'App', 'onactivated');
           break;
         case Env.PHONEGAP:
           bind(document, 'resume', fn);

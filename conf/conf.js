@@ -1,9 +1,10 @@
 Config = {
+  weakDevices: [ 'android 2.3', 'ipad_1' ],
   resources: {
     levels: {
       pathFormat: 'resources/lvl/{0}/{1}',
       meta: {
-        locked: [
+        initiallyLocked: [
           [ 0, 0, 0, 0, 0, 0 ],
           [ 0, 1, 1, 1, 1, 1 ],
           [ 0, 1, 1, 1, 1, 1 ]
@@ -32,8 +33,8 @@ Config = {
             text: {
               levelName: {
                 '1': [ 1, 2, 3, 4, 5, 6 ],
-                '2': [ 1 ],
-                '3': [ 1 ]
+                '2': [ 1, 2, 3, 4, 5, 6 ],
+                '3': [ 1, 2, 3, 4, 5, 6 ]
               },
               intro:  [ 'title',
                         'goodLuck',
@@ -42,7 +43,7 @@ Config = {
                         'circleHint1', 'circleHint2', 'circleHint3', 'circleHint4',
                         'pCircleHint1', 'pCircleHint2', 'pCircleHint3',
                         'scoreHint1', 'scoreHint2' ],
-              _:      [ 'continuing', 'difficulty', 'level', 'score', 'quit', 'limit', 'skipped', 'highScore', 'worseScore', 'sameScore', 'completed' ]
+              _:      [ 'continuing', 'difficulty', 'level', 'score', 'quit', 'limit', 'skipped', 'highScore', 'worseScore', 'sameScore', 'completed', 'unlocked' ]
             },
 
             icon: [ 'empty', 'plus', 'minus', 'equal', 'locked' ],

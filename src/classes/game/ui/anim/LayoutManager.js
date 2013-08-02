@@ -6,7 +6,7 @@ Kinetic.LayoutManager = (function() {
   var READJUST_LAYOUT_STEPS = 15;
 
   var Class = $.Class({
-    _init: function(config) {
+    _init_: function(config) {
       config.onStep = this._onAdjustStep;
 
       Kinetic.StepAnimation.call(this, config);

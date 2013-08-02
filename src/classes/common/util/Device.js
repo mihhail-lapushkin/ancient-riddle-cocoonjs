@@ -18,16 +18,26 @@ Device = (function() {
 
     quitApp: function() {
       if (Env.isCocoonJS) {
-        Env.callAPI('forceToFinish');
+        Env.callAPI('IDTK_APP', 'forceToFinish');
       } else {
         window.close();
       }
     },
     
-    is: function(device) {
-      var deviceRx = new RegExp(device, 'i');
+    is: function(devices) {
+      if (!Array.isArray(devices)) {
+        devices = [ devices ];
+      }
+
+      for (var i = 0; i < devices.length; i++) {
+        var deviceRx = new RegExp(devices[i], 'i');
       
-      return deviceRx.test(navigator.userAgent) || deviceRx.test(navigator.appVersion);
+        if (deviceRx.test(navigator.userAgent) || deviceRx.test(navigator.appVersion)) {
+          return true;
+        }
+      }
+      
+      return false;
     }
   };
 })();

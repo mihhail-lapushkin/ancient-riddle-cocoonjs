@@ -3,7 +3,7 @@ Kinetic.Connection = (function() {
   var MAX_STRETCH = 1.5;
 
   var Class = $.Class({
-    _init: function(config) {
+    _init_: function(config) {
       config.drawFunc = this.drawFunc;
 
       Kinetic.Shape.call(this, config);

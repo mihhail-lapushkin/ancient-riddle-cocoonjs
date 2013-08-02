@@ -13,9 +13,9 @@ InitController = $.Class({
   },
 
   initSound: function() {
-    SoundManager.muteSound(DAO.soundMuted());
-    SoundManager.muteMusic(DAO.musicMuted());
-    SoundManager.startMusic({ shuffle: !DAO.isFreshDb() });
+    AudioManager.muteSound(DAO.soundMuted());
+    AudioManager.muteMusic(DAO.musicMuted());
+    AudioManager.startMusic({ shuffle: !DAO.isFreshDb() });
   },
 
   initMenuState: function() {

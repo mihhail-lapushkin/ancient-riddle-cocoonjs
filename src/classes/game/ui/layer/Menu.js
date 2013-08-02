@@ -7,7 +7,7 @@ Kinetic.Menu = (function() {
   var SCORE_COUNTER_START_PCT = 0.5;
 
   var Class = $.Class({
-    _init: function(config) {
+    _init_: function(config) {
       Kinetic.AbstractSlidingContainer.call(this, config);
 
       this._buildLeftSide();
@@ -15,7 +15,7 @@ Kinetic.Menu = (function() {
     },
 
     _difficultySelected: function(d, opt) {
-      opt = opt || { replacementScore: [] };
+      opt = opt || { fakeScore: [], fakeLocked: [] };
 
       if (d !== undefined) {
         this._selectedDifficulty = d;
@@ -26,15 +26,14 @@ Kinetic.Menu = (function() {
       this.leftSide.level.buttons.each(function(button) {
         var l = button.getName();
         
-        if (Level.isLocked(this._selectedDifficulty, l)) {
+        if (opt.fakeLocked[l] || DAO.isLevelLocked(this._selectedDifficulty, l)) {
+          button.lockedIcon.setOpacity(1);
           button.lockedIcon.show();
-          button.hide();
         } else {
           button.lockedIcon.hide();
-          button.show();
 
           var s = this._score(this._selectedDifficulty, l);
-          var rs = opt.replacementScore[l];
+          var rs = opt.fakeScore[l];
 
           if (s === undefined) {
             button.clear();
@@ -268,6 +267,10 @@ Kinetic.Menu = (function() {
     getLevelCircle: function(l) {
       return this.leftSide.level.buttons.get('.' + l).first();
     },
+    
+    getLockCircle: function(l) {
+      return this.getLevelCircle(l).lockedIcon;
+    },    
 
     showLevelSelector: function(args) {
       this._difficultySelected(args.difficulty, args);
@@ -292,7 +295,7 @@ Kinetic.Menu = (function() {
         if (wasListening) this.setListening(true);
         if (callback) {
           callback();
-          this.getLayer().draw();
+          this.getLayer().drawHit();
         }
       });
     },

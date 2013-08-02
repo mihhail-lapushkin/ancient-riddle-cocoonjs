@@ -20,7 +20,7 @@
   }
   
   if (!Env.isDev) {
-    if (Device.is('android 2.3') || Device.is('ipad_1')) {
+    if (Device.is(Config.weakDevices)) {
       delete Config.resources.audio.files.music;
       DAO.musicMuted(true);
       

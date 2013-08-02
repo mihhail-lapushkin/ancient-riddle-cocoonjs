@@ -10,7 +10,7 @@ Kinetic.GameCircle = (function() {
   var LONG_ROTATE_OUT_TIME = 0.6;
 
   var Class = $.Class({
-    _init: function(config) {
+    _init_: function(config) {
       Kinetic.Image.call(this, config);
 
       this.attrs.connections = [];
@@ -156,7 +156,7 @@ Kinetic.GameCircle = (function() {
     },
 
     _playPressSound: function() {
-      SoundManager.play(Audio.sound.tap.circle);
+      AudioManager.play(Audio.sound.tap.circle);
     },
 
     _animatePress: function() {

@@ -89,12 +89,16 @@ DAO = (function() {
 
           l = 1;
         }
-      } while (LevelData.isLocked(d, l));
+      } while (this.isLevelLocked(d, l));
 
       return {
         difficulty: d,
         level: l
       };
+    },
+    
+    isLevelLocked: function(d, l) {
+      return LevelData.isInitiallyLocked(d, l) && (this.getScore(d, l - 1) || 0) < 1;
     },
 
     getTurns: function() {

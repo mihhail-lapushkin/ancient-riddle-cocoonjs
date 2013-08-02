@@ -1,6 +1,6 @@
 Kinetic.SimpleButton = (function() {
   var Class = $.Class({
-    _init: function(config) {
+    _init_: function(config) {
       Kinetic.Image.call(this, config);
       Kinetic.AbstractButton.call(this, config);
 

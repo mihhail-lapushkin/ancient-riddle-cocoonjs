@@ -40,24 +40,46 @@ GameOverController = $.Class({
       turns: DAO.getTurns(),
       solution: DAO.getSolution(),
       callback: function() {
-        var repScore = {};
-        repScore[DAO.getLevel()] = lastScore !== undefined ? lastScore : 0;
+        var next = DAO.getNextLevel();
+        var fakeScore = {};
+        var fakeLocked = {};
+        var unlockedLevel;
+        
+        fakeScore[DAO.getLevel()] = lastScore !== undefined ? lastScore : 0;
+        
+        if (LevelData.isInitiallyLocked(next.difficulty, next.level) && (!lastScore || lastScore < 1) && newScore >= 1) {
+          fakeLocked[next.level] = true;
+          unlockedLevel = next.level;
+        }
 
-        this.afterCountingScore(repScore);
+        this.afterCountingScore(fakeScore, fakeLocked, unlockedLevel);
       }.bind(this)
     });
   },
 
-  afterCountingScore: function(repScore) {
+  afterCountingScore: function(fakeScore, fakeLocked, unlockedLevel) {
     $.delay(1, function() {
       UI.menu.setListening(false);
       UI.menu.showLevelSelector({
         difficulty: DAO.getDifficulty(),
-        replacementScore: repScore,
+        fakeScore: fakeScore,
+        fakeLocked: fakeLocked,
         callback: function() {
+          var nextClb = this.afterEnded;
+          
+          if (unlockedLevel !== undefined) {
+            nextClb = function() {
+              UI.gameOver.animateUnlocking({
+                levelCircle: UI.menu.getLevelCircle(unlockedLevel),
+                lockIcon: UI.menu.getLockCircle(unlockedLevel),
+                callback: this.afterEnded
+              });
+            }.bind(this);
+          }
+          
           UI.gameOver.animateMergingScore({
             mergeWith: UI.menu.getLevelCircle(DAO.getLevel()),
-            callback: this.afterEnded
+            callback: nextClb
           });
         }.bind(this)
       });

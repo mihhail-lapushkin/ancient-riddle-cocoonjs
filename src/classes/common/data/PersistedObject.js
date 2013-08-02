@@ -1,5 +1,5 @@
 PersistedObject = $.Class({
-  _init: function(name, defVals) {
+  _init_: function(name, defVals) {
     defVals = defVals || {};
 
     var obj = localStorage.getItem(name);

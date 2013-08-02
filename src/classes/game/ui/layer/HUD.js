@@ -11,7 +11,7 @@ Kinetic.HUD = (function() {
   var FLOATING_NUMBER_HEIGHT = 4;
 
   var Class = $.Class({
-    _init: function(config) {
+    _init_: function(config) {
       Kinetic.Group.call(this, config);
 
       this._build();

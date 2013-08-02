@@ -2,7 +2,7 @@ Kinetic.AbstractSlidingContainer = (function() {
   var OPACITY = 0.75;
 
   var Class = $.Class({
-    _init: function(config) {
+    _init_: function(config) {
       Kinetic.Group.call(this, config);
 
       var w = this.getWidth();

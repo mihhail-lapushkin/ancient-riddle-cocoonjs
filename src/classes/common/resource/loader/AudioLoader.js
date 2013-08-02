@@ -17,7 +17,7 @@ AudioLoader = (function() {
   return $.Class({
     extend: AbstractLoader,
 
-    _init: function() {
+    _init_: function() {
       AbstractLoader.apply(this, arguments);
     },
 

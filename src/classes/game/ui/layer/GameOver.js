@@ -1,13 +1,14 @@
 Kinetic.GameOver = (function() {
   var SIDE_ANIMATION_TIME = 0.7;
-  var COUNT_TO_ZERO_TIME = 5;
-  var COUNT_TO_TURNS_TIME = 6;
-  var MERGE_MOVE_ANIMATION_TIME = 4;
+  var COUNT_TO_ZERO_TIME = 3;
+  var COUNT_TO_TURNS_TIME = 4;
+  var MERGE_MOVE_ANIMATION_TIME = 3;
   var MERGE_MOVE_DELAY = 0.7;
   var MERGE_OPACITY = 0.5;
   var SCORE_INCREMENT_TIME = 2;
   var SCORE_FINAL_FADE_OUT_TIME = 1;
   var SIGN_FADE_OUT_TIME = 1;
+  var LOCK_FADE_OUT_TIME = 1;
   var BLINK_TIME = 0.5;
   var LONG_BLINK_TIME = 0.7;
 
@@ -24,7 +25,7 @@ Kinetic.GameOver = (function() {
   var SCORE_DELTA_SIGN = 'scoreSign';
 
   var Class = $.Class({
-    _init: function(config) {
+    _init_: function(config) {
       Kinetic.AbstractSlidingContainer.call(this, config);
 
       this._build();
@@ -39,6 +40,7 @@ Kinetic.GameOver = (function() {
       this._createBlinkingText('sameScore');
       this._createBlinkingText('completed');
       this._createBlinkingText('skipped');
+      this._createBlinkingText('unlocked');
 
       this.add(this.pressCatcher = new Kinetic.PressCatcher({
         width: w,
@@ -106,7 +108,7 @@ Kinetic.GameOver = (function() {
       }
     },
 
-    _blinkText: function(name, t) {
+    _blinkText: function(name, t, callback) {
       this[name].show();
       this[name].to({
         duration: t ? t : BLINK_TIME,
@@ -117,6 +119,8 @@ Kinetic.GameOver = (function() {
             opacity: 0,
             callback: function() {
               this[name].hide();
+              
+              if (callback) callback();
             }.bind(this)
           });
         }.bind(this)
@@ -246,8 +250,7 @@ Kinetic.GameOver = (function() {
       } else if (newPercent < lastPercent) {
         this._animateWorseScore(mergeFrom, callback);
       } else {
-        //this._animateSameScore(mergeFrom, callback);
-        this._animateNewHighScore(mergeFrom, mergeWith, callback);
+        this._animateSameScore(mergeFrom, callback);
       }
     },
 
@@ -316,6 +319,18 @@ Kinetic.GameOver = (function() {
       circle.getParent().add(image);
 
       return image;
+    },
+    
+    animateUnlocking: function(args) {
+      this._blinkText('unlocked', LONG_BLINK_TIME, function() {
+        args.levelCircle.clear();
+        args.lockIcon.to({
+          opacity: 0,
+          duration: LOCK_FADE_OUT_TIME,
+          easing: 'EaseIn',
+          callback: args.callback
+        });
+      });
     },
 
     _hideAll: function(callback) {

@@ -1,5 +1,5 @@
 Point = $.Class({
-  _init: function(x, y) {
+  _init_: function(x, y) {
     this.x = x;
     this.y = y;
   },

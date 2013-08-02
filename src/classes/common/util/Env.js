@@ -12,9 +12,9 @@ Env = (function() {
       is: navigator.isCocoonJS !== undefined,
       name: 'CocoonJS',
       methods: {
-        callAPI: function() {
-          var api = window.ext.IDTK_APP;
-          api.makeCall.apply(api, arguments);
+        callAPI: function(service) {
+          var api = window.ext[service];
+          api.makeCall.apply(api, Array.prototype.slice.call(arguments, 1));
         }
       }
     },
@@ -34,6 +34,7 @@ Env = (function() {
     if (val.is) {
       currEnv = o;
     }
+    
     if (val.methods) {
       for (var m in val.methods) {
         envObjects[key][m] = val.methods[m];
@@ -46,9 +47,9 @@ Env = (function() {
     currEnv = envObjects.DEV;
   }
 
-  for ( var k1 in env) {
+  for (var k1 in env) {
     var o = envObjects[k1];
-    for ( var k2 in env) {
+    for (var k2 in env) {
       o[k2] = envObjects[k2];
       o['is' + env[k2].name] = env[k2].is;
     }

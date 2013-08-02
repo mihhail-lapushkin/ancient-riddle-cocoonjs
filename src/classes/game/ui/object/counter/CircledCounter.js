@@ -3,7 +3,7 @@ Kinetic.CircledCounter = (function() {
   var COUNTER_Y = 0.325;
 
   var Class = $.Class({
-    _init: function(config) {
+    _init_: function(config) {
       Kinetic.Group.call(this, config);
 
       this._build();

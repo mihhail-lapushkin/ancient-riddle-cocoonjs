@@ -4,7 +4,7 @@ Kinetic.Game = (function() {
   var FADE_TIME = 0.5;
 
   var Class = $.Class({
-    _init: function(config) {
+    _init_: function(config) {
       Kinetic.Group.call(this, config);
 
       this.add(this.connections = new Kinetic.Group({ listening: false }));

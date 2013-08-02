@@ -2,7 +2,7 @@ Kinetic.Background = (function() {
   var ANIMATION_TIME = 0.5;
 
   var Class = $.Class({
-    _init: function(config) {
+    _init_: function(config) {
       config.listening = false;
 
       Kinetic.Group.call(this, config);

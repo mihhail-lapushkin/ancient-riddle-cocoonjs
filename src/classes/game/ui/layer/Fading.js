@@ -3,7 +3,7 @@ Kinetic.Fading = (function() {
   var FAST_TIME = 1;
 
   var Class = $.Class({
-    _init: function(config) {
+    _init_: function(config) {
       config.fill = 'black';
       config.listening = false;
 

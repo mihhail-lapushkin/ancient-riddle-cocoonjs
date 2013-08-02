@@ -1,6 +1,6 @@
 Kinetic.ProportionalImage = (function() {
   var Class = $.Class({
-    _init: function(config) {
+    _init_: function(config) {
       Kinetic.Image.call(this, config);
 
       this.on('widthChange', this._syncHeight);

@@ -2,7 +2,7 @@ Kinetic.DoubleCounter = (function() {
   var SEPARATOR_HEIGHT = 0.7;
 
   var Class = $.Class({
-    _init: function(config) {
+    _init_: function(config) {
       Kinetic.Group.call(this, config);
 
       this._digit = Image.digit.big;

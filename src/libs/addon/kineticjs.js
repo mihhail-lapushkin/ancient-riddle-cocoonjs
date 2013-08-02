@@ -3,7 +3,7 @@
   
   for (var key in Kinetic) {
     for (var method in Kinetic[key].prototype) {
-      if (method === '_nodeInit') {
+      if (method === '_init') {
         nodeClassProtos.push(Kinetic[key].prototype);
         break;
       }

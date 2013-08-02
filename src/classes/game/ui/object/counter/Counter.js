@@ -3,7 +3,7 @@ Kinetic.Counter = (function() {
   var EXPAND = 1.2;
 
   var Class = $.Class({
-    _init: function(config) {
+    _init_: function(config) {
       Kinetic.Group.call(this, config);
 
       this.on('heightChange', this._syncDimensions);
@@ -126,7 +126,7 @@ Kinetic.Counter = (function() {
     },
 
     _playChangeSound: function() {
-      SoundManager.play(Audio.sound.tick);
+      AudioManager.play(Audio.sound.tick);
     },
 
     isAnimate: function() {

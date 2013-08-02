@@ -3,7 +3,7 @@ ImageLoader = (function() {
 
   var Class = $.Class({
     extend: AbstractLoader,
-    _init: function() {
+    _init_: function() {
       AbstractLoader.apply(this, arguments);
     },
 

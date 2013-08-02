@@ -53,12 +53,12 @@ ButtonController = $.Class({
   },
 
   soundMuted: function(cmd) {
-    SoundManager.muteSound(cmd.muted);
+    AudioManager.muteSound(cmd.muted);
     DAO.soundMuted(cmd.muted);
   },
 
   musicMuted: function(cmd) {
-    SoundManager.muteMusic(cmd.muted);
+    AudioManager.muteMusic(cmd.muted);
     DAO.musicMuted(cmd.muted);
   },
 

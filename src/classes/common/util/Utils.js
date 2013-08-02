@@ -1,11 +1,10 @@
 Utils = $ = (function() {
   return {
     Class: function(newClass) {
-      var constructor = newClass._init || function() {
-      };
+      var constructor = newClass._init_ || function() {};
       var extendsFrom = newClass.extend;
       constructor.prototype = newClass;
-      newClass._init = undefined;
+      newClass._init_ = undefined;
       newClass.extend = undefined;
 
       if (extendsFrom) {

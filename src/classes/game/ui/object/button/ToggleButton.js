@@ -1,6 +1,6 @@
 Kinetic.ToggleButton = (function() {
   var Class = $.Class({
-    _init: function(config) {
+    _init_: function(config) {
       config.image = config.images.enabled;
       config.onPress = this._toggle;
 

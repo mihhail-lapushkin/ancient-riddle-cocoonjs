@@ -3,7 +3,7 @@ Kinetic.ProgressBar = (function() {
   var FADE_DISTANCE = 0.3;
 
   var Class = $.Class({
-    _init: function(config) {
+    _init_: function(config) {
       Kinetic.Group.call(this, config);
 
       this._build();
