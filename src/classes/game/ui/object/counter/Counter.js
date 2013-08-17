@@ -139,12 +139,12 @@ Kinetic.Counter = (function() {
   });
 
   Kinetic.Util.extend(Class, Kinetic.Group);
-  Kinetic.Node.addGetterSetter(Class, 'value', 0);
-  Kinetic.Node.addGetterSetter(Class, 'padding', 0);
-  Kinetic.Node.addGetterSetter(Class, 'animate', true);
-  Kinetic.Node.addGetterSetter(Class, 'ticking', false);
-  Kinetic.Node.addGetterSetter(Class, 'size', 2);
-  Kinetic.Node.addGetterSetter(Class, 'sizeWidth');
+  Kinetic.Factory.addGetterSetter(Class, 'value', 0);
+  Kinetic.Factory.addGetterSetter(Class, 'padding', 0);
+  Kinetic.Factory.addGetterSetter(Class, 'animate', true);
+  Kinetic.Factory.addGetterSetter(Class, 'ticking', false);
+  Kinetic.Factory.addGetterSetter(Class, 'size', 2);
+  Kinetic.Factory.addGetterSetter(Class, 'sizeWidth');
 
   return Class;
 })();

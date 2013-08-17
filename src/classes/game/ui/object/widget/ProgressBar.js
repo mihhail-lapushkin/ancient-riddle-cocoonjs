@@ -48,8 +48,8 @@ Kinetic.ProgressBar = (function() {
   });
 
   Kinetic.Util.extend(Class, Kinetic.Group);
-  Kinetic.Node.addGetterSetter(Class, 'percent', 0);
-  Kinetic.Node.addGetterSetter(Class, 'reversed', false);
+  Kinetic.Factory.addGetterSetter(Class, 'percent', 0);
+  Kinetic.Factory.addGetterSetter(Class, 'reversed', false);
 
   return Class;
 })();

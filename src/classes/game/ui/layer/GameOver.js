@@ -1,11 +1,11 @@
 Kinetic.GameOver = (function() {
   var SIDE_ANIMATION_TIME = 0.7;
-  var COUNT_TO_ZERO_TIME = 3;
-  var COUNT_TO_TURNS_TIME = 4;
-  var MERGE_MOVE_ANIMATION_TIME = 3;
+  var COUNT_TO_ZERO_TIME = 2.5;
+  var COUNT_TO_TURNS_TIME = 2.5;
+  var MERGE_MOVE_ANIMATION_TIME = 2;
   var MERGE_MOVE_DELAY = 0.7;
   var MERGE_OPACITY = 0.5;
-  var SCORE_INCREMENT_TIME = 2;
+  var SCORE_INCREMENT_TIME = 1.5;
   var SCORE_FINAL_FADE_OUT_TIME = 1;
   var SIGN_FADE_OUT_TIME = 1;
   var LOCK_FADE_OUT_TIME = 1;
@@ -242,10 +242,10 @@ Kinetic.GameOver = (function() {
     },
 
     _animateScoreComparison: function(mergeFrom, mergeWith, callback) {
-      var newPercent = mergeFrom.getPercent();
-      var lastPercent = mergeWith.getPercent();
+      var newPercent = mergeFrom.getPercent().toFixed(5);
+      var lastPercent = mergeWith.getPercent().toFixed(5);
 
-      if (lastPercent === undefined || newPercent > lastPercent) {
+      if (newPercent > lastPercent) {
         this._animateNewHighScore(mergeFrom, mergeWith, callback);
       } else if (newPercent < lastPercent) {
         this._animateWorseScore(mergeFrom, callback);

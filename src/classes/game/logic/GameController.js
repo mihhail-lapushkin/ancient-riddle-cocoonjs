@@ -133,10 +133,9 @@ GameController = $.Class({
     });
 
     if (pressesLeft > 1) {
-      UI.game.hud.floatNumber({
+      UI.game.hud.floatTapsLost({
         position: e.circle.getPosition(),
-        number: pressesLeft,
-        negative: true
+        number: pressesLeft
       });
     }
   },

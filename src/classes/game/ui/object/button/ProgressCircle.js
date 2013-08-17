@@ -120,9 +120,9 @@ Kinetic.ProgressCircle = (function() {
 
   Kinetic.Util.extend(Class, Kinetic.Group);
   Kinetic.Util.extend(Class, Kinetic.AbstractButton);
-  Kinetic.Node.addGetterSetter(Class, 'percent', 0);
-  Kinetic.Node.addGetterSetter(Class, 'size', 'small');
-  Kinetic.Node.addGetterSetter(Class, 'radius');
+  Kinetic.Factory.addGetterSetter(Class, 'percent', 0);
+  Kinetic.Factory.addGetterSetter(Class, 'size', 'small');
+  Kinetic.Factory.addGetterSetter(Class, 'radius');
 
   return Class;
 })();

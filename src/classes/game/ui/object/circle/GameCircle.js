@@ -261,8 +261,8 @@ Kinetic.GameCircle = (function() {
   });
 
   Kinetic.Util.extend(Class, Kinetic.Image);
-  Kinetic.Node.addGetterSetter(Class, 'radius');
-  Kinetic.Node.addGetterSetter(Class, 'score');
+  Kinetic.Factory.addGetterSetter(Class, 'radius');
+  Kinetic.Factory.addGetterSetter(Class, 'score');
 
   return Class;
 })();

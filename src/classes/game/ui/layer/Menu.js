@@ -285,12 +285,12 @@ Kinetic.Menu = (function() {
     },
 
     hideMenu: function(callback) {
+      var wasListening = this.isListening();
+      this.setListening(false);
+      
       this._hideLeftSide();
       this._hideRightSide();
 
-      var wasListening = this.isListening();
-
-      this.setListening(false);
       this.afterSideAnimated(function() {
         if (wasListening) this.setListening(true);
         if (callback) {

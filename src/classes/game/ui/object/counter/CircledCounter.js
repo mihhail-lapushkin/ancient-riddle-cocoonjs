@@ -38,8 +38,8 @@ Kinetic.CircledCounter = (function() {
   });
 
   Kinetic.Util.extend(Class, Kinetic.Group);
-  Kinetic.Node.addGetterSetter(Class, 'value');
-  Kinetic.Node.addGetterSetter(Class, 'radius');
+  Kinetic.Factory.addGetterSetter(Class, 'value');
+  Kinetic.Factory.addGetterSetter(Class, 'radius');
 
   return Class;
 })();

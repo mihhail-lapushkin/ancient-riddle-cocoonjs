@@ -2,8 +2,8 @@ Kinetic.Intro = (function() {
   var TITLE_HEIGHT = 23;
   var GOOD_LUCK_HEIGHT = 7;
   var QUICK_HINTS_HEIGHT = 6;
-  var TITLE_ANIMATION_TIME = 5;
-  var DARK_OVERLAY_ANIMATION_TIME = 1.5;
+  var TITLE_ANIMATION_TIME = 4;
+  var DARK_OVERLAY_ANIMATION_TIME = 1.2;
   var DARK_OVERLAY_OPAICTY = 0.65;
   var FADE_TIME = 1.8;
   var HINT_DELAY = 0.5;
@@ -33,6 +33,7 @@ Kinetic.Intro = (function() {
       this._createTextGroup({ name: 'aCircleHint', w: 0.8, h: 0.2, x: 0.1, y: 0.5 });
       this._createTextGroup({ name: 'pCircleHint', w: 0.8, h: 0.33, x: 0.1, y: 0.2 });
       this._createTextGroup({ name: 'circleHint', w: 0.7, h: 0.6, center: true });
+      this._createTextGroup({ name: 'bigCircleHint', w: 0.7, h: 0.6, center: true });
     },
 
     addObject: function(obj) {
@@ -133,27 +134,29 @@ Kinetic.Intro = (function() {
     },
 
     _animateHint: function(conf) {
-      this.fire(conf.hintEvt);
-      this.getLayer().draw();
+      var nextClb;
       
-      $.delay(HINT_DELAY, function() {
-        this._fadeIn(this.objects, function() {
-          var clb;
-  
-          if (conf.skipDestroy) {
-            clb = conf.callback.bind(this);
-          } else {
-            clb = function() {
+      if (conf.hintEvt) {
+        this.fire(conf.hintEvt);
+        this.getLayer().draw();
+        
+        nextClb = function() {
+          this._fadeIn(this.objects, function() {
+            this._fadeInOutGroupNodes(this.texts[conf.group], function() {
               this._fadeOut(this.objects, function() {
                 this._destroyObjects();
                 conf.callback.call(this);
               }.bind(this));
-            }.bind(this);
-          }
-  
-          this._fadeInOutGroupNodes(this.texts[conf.group], clb);
-        }.bind(this));
-      }.bind(this));
+            }.bind(this));
+          }.bind(this));
+        }.bind(this);
+      } else {
+        nextClb = function() {
+          this._fadeInOutGroupNodes(this.texts[conf.group], conf.callback.bind(this));
+        }.bind(this);
+      }
+      
+      $.delay(HINT_DELAY, nextClb);
     },
 
     _beforeAnimateHints: function(callback) {
@@ -222,9 +225,13 @@ Kinetic.Intro = (function() {
                     this._animateHint({
                       hintEvt: 'hintCircle',
                       group: 'circleHint',
-                      skipDestroy: true,
                       callback: function() {
-                        this._afterAnimateHints(this._destroyAndExit);
+                        this._animateHint({
+                          group: 'bigCircleHint',
+                          callback: function() {
+                            this._afterAnimateHints(this._destroyAndExit);
+                          }
+                        });
                       }
                     });
                   }

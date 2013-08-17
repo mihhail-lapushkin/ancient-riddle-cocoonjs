@@ -9,7 +9,11 @@ GameOverController = $.Class({
     UI.game.setListening(false);
 
     var lastScore = DAO.getScore();
-    var newScore = DAO.evalScore();
+    var newScore = DAO.evalScore().toFixed(5);
+    
+    if (lastScore !== undefined) {
+      lastScore = lastScore.toFixed(5);
+    }
 
     if (lastScore === undefined || newScore > lastScore) {
       DAO.saveScore();

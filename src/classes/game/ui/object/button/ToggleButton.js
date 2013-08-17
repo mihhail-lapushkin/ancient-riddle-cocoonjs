@@ -30,7 +30,7 @@ Kinetic.ToggleButton = (function() {
   });
 
   Kinetic.Util.extend(Class, Kinetic.SimpleButton);
-  Kinetic.Node.addGetterSetter(Class, 'enabled', true);
+  Kinetic.Factory.addGetterSetter(Class, 'enabled', true);
 
   return Class;
 })();

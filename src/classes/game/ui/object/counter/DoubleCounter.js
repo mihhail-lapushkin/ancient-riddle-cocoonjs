@@ -55,9 +55,9 @@ Kinetic.DoubleCounter = (function() {
   });
 
   Kinetic.Util.extend(Class, Kinetic.Group);
-  Kinetic.Node.addGetterSetter(Class, 'valueOne');
-  Kinetic.Node.addGetterSetter(Class, 'valueTwo');
-  Kinetic.Node.addGetterSetter(Class, 'padding');
+  Kinetic.Factory.addGetterSetter(Class, 'valueOne');
+  Kinetic.Factory.addGetterSetter(Class, 'valueTwo');
+  Kinetic.Factory.addGetterSetter(Class, 'padding');
 
   return Class;
 })();

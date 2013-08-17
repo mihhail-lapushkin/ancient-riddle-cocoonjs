@@ -40,10 +40,11 @@ Config = {
                         'goodLuck',
                         'quickHints',
                         'aCircleHint1', 'aCircleHint2',
-                        'circleHint1', 'circleHint2', 'circleHint3', 'circleHint4',
                         'pCircleHint1', 'pCircleHint2', 'pCircleHint3',
+                        'circleHint1', 'circleHint2', 'circleHint3', 'circleHint4',
+                        'bigCircleHint1', 'bigCircleHint2', 'bigCircleHint3', 'bigCircleHint4',
                         'scoreHint1', 'scoreHint2' ],
-              _:      [ 'continuing', 'difficulty', 'level', 'score', 'quit', 'limit', 'skipped', 'highScore', 'worseScore', 'sameScore', 'completed', 'unlocked' ]
+              _:      [ 'continuing', 'difficulty', 'level', 'score', 'quit', 'limit', 'skipped', 'highScore', 'worseScore', 'sameScore', 'completed', 'unlocked', 'tapsLost' ]
             },
 
             icon: [ 'empty', 'plus', 'minus', 'equal', 'locked' ],

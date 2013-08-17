@@ -63,10 +63,10 @@ ButtonController = $.Class({
   },
 
   prepareForNewGame: function(callback) {
-    UI.inactiveDisp.fadeOut();
     UI.menu.hideMenu(function() {
       UI.game.fadeOut(callback.bind(this));
     }.bind(this));
+    UI.inactiveDisp.fadeOut();
   },
 
   restart: function() {

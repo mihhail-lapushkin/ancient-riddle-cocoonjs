@@ -1,5 +1,5 @@
 Kinetic.Fading = (function() {
-  var LONG_TIME = 5;
+  var LONG_TIME = 3.5;
   var FAST_TIME = 1;
 
   var Class = $.Class({

@@ -2,13 +2,14 @@ Kinetic.HUD = (function() {
   var FADE_TIME = 1;
   var TURNS_ANIMATION_TIME = 1;
   var LIMIT_ANIMATION_STEP_TIME = 1;
-  var FLOATING_NUMBER_STEP_ANIMATION_TIME = 0.5;
+  var TAPS_LOST_STEP_ANIMATION_TIME = 0.5;
   var OPACITY = 0.6;
 
   var TURNS_HEIGHT = 5;
   var PAUSE_SIZE = 6;
   var LIMIT_WIDTH = 0.65;
-  var FLOATING_NUMBER_HEIGHT = 4;
+  var TAPS_LOST_NUMBER_HEIGHT = 4;
+  var TAPS_LOST_TEXT_TO_NUMBER_WIDTH = 1.8;
 
   var Class = $.Class({
     _init_: function(config) {
@@ -103,30 +104,52 @@ Kinetic.HUD = (function() {
         }
       });
     },
-
-    floatNumber: function(args) {
-      var c = new Kinetic.Counter({
+    
+    _createTapsLostNumber: function(args) {
+      var padding = this.attrs.padding;
+      
+      var g = new Kinetic.Group({
         x: args.position.x,
-        y: args.position.y,
-        height: this.attrs.unit * FLOATING_NUMBER_HEIGHT,
+        y: args.position.y,    
         opacity: OPACITY,
-        value: (args.negative ? -1 : 1) * args.number,
-        animate: false,
         listening: false
       });
+      
+      var number = new Kinetic.Counter({
+        height: this.attrs.unit * TAPS_LOST_NUMBER_HEIGHT,
+        value: -args.number,
+        animate: false
+      });
+      
+      var text = new Kinetic.ProportionalImage({
+        width: number.getWidth() * TAPS_LOST_TEXT_TO_NUMBER_WIDTH,
+        image: Image.text.tapsLost
+      });
+      
+      number.setX((text.getWidth() - number.getWidth()) / 2);
+      text.setY(number.getHeight() + padding / 2);
 
-      c.setOffset(c.getWidth() / 2, c.getHeight() / 2);
+      g.add(number);
+      g.add(text);
 
-      this.add(c);
+      g.setOffset(text.getWidth() / 2, (text.getY() + text.getHeight()) / 2);
+      
+      return g;
+    },
 
-      c.to({
-        duration: FLOATING_NUMBER_STEP_ANIMATION_TIME,
+    floatTapsLost: function(args) {
+      var tapsLost = this._createTapsLostNumber(args);
+
+      this.add(tapsLost);
+      
+      tapsLost.to({
+        duration: TAPS_LOST_STEP_ANIMATION_TIME,
         easing: 'StrongEaseOut',
         scaleX: 1.5,
         scaleY: 1.5,
         callback: function() {
           this.to({
-            duration: FLOATING_NUMBER_STEP_ANIMATION_TIME,
+            duration: TAPS_LOST_STEP_ANIMATION_TIME,
             easing: 'EaseIn',
             opacity: 0,
             scaleX: 0.5,
@@ -148,7 +171,7 @@ Kinetic.HUD = (function() {
   });
 
   Kinetic.Util.extend(Class, Kinetic.Group);
-  Kinetic.Node.addGetterSetter(Class, 'turnsVal');
+  Kinetic.Factory.addGetterSetter(Class, 'turnsVal');
 
   return Class;
 })();

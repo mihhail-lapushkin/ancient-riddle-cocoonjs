@@ -22,7 +22,10 @@ Kinetic.LayoutManager = (function() {
     _onAdjustStep: function() {
       this._algorithm.runOnce();
       this._conns.forEach(function(c) { c.refresh(); });
-      this._circles.forEach(function(c) { c.cachedTransform = undefined; });
+      this._circles.forEach(function(c) {
+        c._clearCache('transform');
+        c._clearSelfAndChildrenCache('absoluteTransform');
+      });
     },
 
     _clearFromCorners: function(a, x, y, minXY, maxX, maxY) {

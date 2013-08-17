@@ -54,7 +54,7 @@ Kinetic.Loading = (function() {
   });
 
   Kinetic.Util.extend(Class, Kinetic.Group);
-  Kinetic.Node.addGetterSetter(Class, 'percent');
+  Kinetic.Factory.addGetterSetter(Class, 'percent');
 
   return Class;
 })();
