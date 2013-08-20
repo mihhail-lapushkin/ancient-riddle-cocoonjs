@@ -185,9 +185,13 @@ Kinetic.GameOver = (function() {
         duration: COUNT_TO_ZERO_TIME * 4 / 5,
         easing: 'EaseOut'
       });
-
+      
+      if (score < 1) {
+        this.rightSide.score.setShowCompleted(false);
+      }
+      
       this.rightSide.score.to({
-        percent: Math.max(score, 0.999),
+        percent: Math.max(score, 1),
         duration: COUNT_TO_ZERO_TIME,
         easing: 'SoftBackEaseOut',
         callback: function() {

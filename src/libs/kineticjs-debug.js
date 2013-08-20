@@ -4598,7 +4598,7 @@ var Kinetic = {};
     };
 
     Kinetic.Node.prototype._setDragPosition = function(evt) {
-        var dd = Kinetic.DD
+        var dd = Kinetic.DD,
             pos = this.getStage().getPointerPosition(),
             dbf = this.getDragBoundFunc(),
             newNodePos = {

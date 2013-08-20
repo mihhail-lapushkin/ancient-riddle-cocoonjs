@@ -114,7 +114,7 @@ Kinetic.Counter = (function() {
       this._updateCounter(valueDigits, this._getSignLabel(newVal));
       this._syncDimensions();
 
-      if (this.isAnimate() && this.isVisible() && this.getAbsoluteOpacity() > 0) {
+      if (this.isAnimate() && this.getVisible() && this.getAbsoluteOpacity() > 0) {
         this._animateValueChange();
       } else {
         this.getLayer().draw();

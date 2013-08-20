@@ -60,15 +60,15 @@ Kinetic.ProgressCircle = (function() {
     _percentChanged: function(evt) {
       var p = evt.newVal;
 
-      if (p === 1) {
-        if (!this.complete.isVisible()) {
+      if (p === 1 && this.getShowCompleted()) {
+        if (!this.complete.getVisible()) {
           this.complete.show();
           this.base.hide();
           this.overlay.hide();
           this.hand.hide();
         }
       } else {
-        if (this.complete.isVisible()) {
+        if (this.complete.getVisible()) {
           this._showTicker();
         }
       }
@@ -76,11 +76,11 @@ Kinetic.ProgressCircle = (function() {
       this.hand.setRotation(Math.PI * 2 * p);
 
       if (p >= 1) {
-        if (this.overlay.isVisible()) {
+        if (this.overlay.getVisible()) {
           this.overlay.hide();
         }
       } else {
-        if (!this.overlay.isVisible()) {
+        if (!this.overlay.getVisible()) {
           this.overlay.show();
         }
 
@@ -123,6 +123,7 @@ Kinetic.ProgressCircle = (function() {
   Kinetic.Factory.addGetterSetter(Class, 'percent', 0);
   Kinetic.Factory.addGetterSetter(Class, 'size', 'small');
   Kinetic.Factory.addGetterSetter(Class, 'radius');
+  Kinetic.Factory.addGetterSetter(Class, 'showCompleted', true);
 
   return Class;
 })();
