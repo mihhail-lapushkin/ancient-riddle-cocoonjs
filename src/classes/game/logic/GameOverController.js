@@ -22,9 +22,7 @@ GameOverController = $.Class({
     $.delay(1, function() {
       UI.menu.hideMenu();
       UI.bg.toGrayscale(function() {
-        UI.game.fadeOut(function() {
-          this.animateGameOver(lastScore, newScore);
-        }.bind(this));
+        UI.game.fadeOut(this.animateGameOver.bind(this, lastScore, newScore));
       }.bind(this));
     }.bind(this));
   },
@@ -62,31 +60,29 @@ GameOverController = $.Class({
   },
 
   afterCountingScore: function(fakeScore, fakeLocked, unlockedLevel) {
-    $.delay(1, function() {
-      UI.menu.setListening(false);
-      UI.menu.showLevelSelector({
-        difficulty: DAO.getDifficulty(),
-        fakeScore: fakeScore,
-        fakeLocked: fakeLocked,
-        callback: function() {
-          var nextClb = this.afterEnded;
+    UI.menu.setListening(false);
+    UI.menu.showLevelSelector({
+      difficulty: DAO.getDifficulty(),
+      fakeScore: fakeScore,
+      fakeLocked: fakeLocked,
+      callback: function() {
+        var nextClb = this.afterEnded;
           
-          if (unlockedLevel !== undefined) {
-            nextClb = function() {
-              UI.gameOver.animateUnlocking({
-                levelCircle: UI.menu.getLevelCircle(unlockedLevel),
-                lockIcon: UI.menu.getLockCircle(unlockedLevel),
-                callback: this.afterEnded
-              });
-            }.bind(this);
-          }
+        if (unlockedLevel !== undefined) {
+          nextClb = function() {
+            UI.gameOver.animateUnlocking({
+              levelCircle: UI.menu.getLevelCircle(unlockedLevel),
+              lockIcon: UI.menu.getLockCircle(unlockedLevel),
+              callback: this.afterEnded
+            });
+          }.bind(this);
+        }
           
-          UI.gameOver.animateMergingScore({
-            mergeWith: UI.menu.getLevelCircle(DAO.getLevel()),
-            callback: nextClb
-          });
-        }.bind(this)
-      });
-    }.bind(this));
+        UI.gameOver.animateMergingScore({
+          mergeWith: UI.menu.getLevelCircle(DAO.getLevel()),
+          callback: nextClb
+        });
+      }.bind(this)
+    });
   }
 });

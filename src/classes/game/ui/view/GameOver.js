@@ -1,16 +1,16 @@
 Kinetic.GameOver = (function() {
   var SIDE_ANIMATION_TIME = 0.7;
-  var COUNT_TO_ZERO_TIME = 2.5;
-  var COUNT_TO_TURNS_TIME = 2.5;
-  var MERGE_MOVE_ANIMATION_TIME = 2;
+  var COUNT_TO_ZERO_TIME = 2.0;
+  var COUNT_TO_TURNS_TIME = 2.0;
+  var MERGE_MOVE_ANIMATION_TIME = 2.0;
   var MERGE_MOVE_DELAY = 0.7;
   var MERGE_OPACITY = 0.5;
-  var SCORE_INCREMENT_TIME = 1.5;
-  var SCORE_FINAL_FADE_OUT_TIME = 1;
-  var SIGN_FADE_OUT_TIME = 1;
-  var LOCK_FADE_OUT_TIME = 1;
-  var BLINK_TIME = 0.5;
-  var LONG_BLINK_TIME = 0.7;
+  var SCORE_INCREMENT_TIME = 1.1;
+  var SCORE_FINAL_FADE_OUT_TIME = 0.7;
+  var SIGN_FADE_OUT_TIME = 0.8;
+  var LOCK_FADE_OUT_TIME = 0.7;
+  var BLINK_TIME = 0.4;
+  var LONG_BLINK_TIME = 0.8;
 
   var TEXT_HEIGHT = 6;
   var SCORE_TEXT_X = 0.2;
@@ -151,9 +151,7 @@ Kinetic.GameOver = (function() {
       }
 
       this._blinkText('skipped');
-      this._hideAll(function() {
-        this.fire('animationSkipped');
-      }.bind(this));
+      this._hideAll(this.fire.bind(this, 'animationSkipped'));
     },
 
     animateCountingScore: function(args) {
@@ -179,7 +177,6 @@ Kinetic.GameOver = (function() {
 
     _countToZero: function(turns, score, callback) {
       this.rightSide.turns.tickingOn();
-
       this.rightSide.turns.to({
         value: Math.max(turns, 0),
         duration: COUNT_TO_ZERO_TIME * 4 / 5,
@@ -191,12 +188,10 @@ Kinetic.GameOver = (function() {
       }
       
       this.rightSide.score.to({
-        percent: Math.max(score, 1),
+        percent: 1,
         duration: COUNT_TO_ZERO_TIME,
         easing: 'SoftBackEaseOut',
-        callback: function() {
-          this._countToTurns(turns, score, callback);
-        }.bind(this)
+        callback: this._countToTurns.bind(this, turns, score, callback)
       });
     },
 
@@ -215,8 +210,7 @@ Kinetic.GameOver = (function() {
           callback: callback
         });
       } else {
-        this._blinkText('completed', LONG_BLINK_TIME);
-        callback();
+        this._blinkText('completed', LONG_BLINK_TIME, callback);
       }
     },
 
@@ -279,9 +273,7 @@ Kinetic.GameOver = (function() {
         mergeFrom.to({
           opacity: 0,
           duration: SCORE_FINAL_FADE_OUT_TIME,
-          callback: function() {
-            this._hideAll(callback);
-          }.bind(this)
+          callback: this._hideAll.bind(this, callback)
         });
       }.bind(this));
     },

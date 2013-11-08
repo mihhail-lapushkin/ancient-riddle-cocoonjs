@@ -40,7 +40,7 @@ Kinetic.Quit = (function() {
         width: buttonSize,
         height: buttonSize,
         image: Image.button.quit.no,
-        onPress: function() { this.hide(); }.bind(this)
+        onPress: this.hide.bind(this)
       }));
 
       this.add(this.yes = new Kinetic.SimpleButton({
@@ -49,7 +49,7 @@ Kinetic.Quit = (function() {
         width: buttonSize,
         height: buttonSize,
         image: Image.button.quit.yes,
-        onPress: function() { this.fire('quit'); }.bind(this)
+        onPress: this.fire.bind(this, 'quit')
       }));
     }
   });

@@ -21,9 +21,6 @@
   
   if (!Env.isDev) {
     if (Device.is(Config.weakDevices)) {
-      delete Config.resources.audio.files.music;
-      DAO.musicMuted(true);
-      
       ImageLoader.isXDPI(function() { return false; });
     }
   }

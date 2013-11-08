@@ -1,7 +1,7 @@
 UI = (function() {
   var PADDING = 0.016;
   var MAX_RATIO = 15 / 9;
-
+  
   var dims;
 
   var stage;
@@ -14,17 +14,17 @@ UI = (function() {
   var publicAPI = {};
 
   function showLoading() {
-    if (stage)
-      return;
+    if (stage) return;
 
     initStage();
-
-    canvas.add(loading = new Kinetic.Loading($.clone(dims))).draw();
+    
+    canvas.add(loading = new Kinetic.Loading($.clone(dims)));
+    
+    loading.fadeIn();
   }
 
   function trackLoading(p) {
-    if (!loading)
-      return;
+    if (!loading) return;
 
     loading.setPercent(p);
   }

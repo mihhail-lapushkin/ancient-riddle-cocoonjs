@@ -2,7 +2,9 @@ Kinetic.HUD = (function() {
   var FADE_TIME = 1;
   var TURNS_ANIMATION_TIME = 1;
   var LIMIT_ANIMATION_STEP_TIME = 1;
-  var TAPS_LOST_STEP_ANIMATION_TIME = 0.5;
+  var TAPS_LOST_ZOOM_IN_TIME = 0.5;
+  var TAPS_LOST_TEXT_FADE_IN_TIME = 1;
+  var TAPS_LOST_FADE_OUT_TIME = 0.6;
   var OPACITY = 0.6;
 
   var TURNS_HEIGHT = 5;
@@ -41,7 +43,7 @@ Kinetic.HUD = (function() {
         height: pauseSize,
         opacity: OPACITY,
         image: Image.button.pause,
-        onPress: function() { this.fire('paused'); }.bind(this)
+        onPress: this.fire.bind(this, 'paused')
       }));
 
       this.add(this.limit = new Kinetic.ProportionalImage({
@@ -110,29 +112,29 @@ Kinetic.HUD = (function() {
       
       var g = new Kinetic.Group({
         x: args.position.x,
-        y: args.position.y,    
+        y: args.position.y,
         opacity: OPACITY,
         listening: false
       });
       
-      var number = new Kinetic.Counter({
+      g.number = new Kinetic.Counter({
         height: this.attrs.unit * TAPS_LOST_NUMBER_HEIGHT,
         value: -args.number,
         animate: false
       });
       
-      var text = new Kinetic.ProportionalImage({
-        width: number.getWidth() * TAPS_LOST_TEXT_TO_NUMBER_WIDTH,
+      g.text = new Kinetic.ProportionalImage({
+        width: g.number.getWidth() * TAPS_LOST_TEXT_TO_NUMBER_WIDTH,
         image: Image.text.tapsLost
       });
       
-      number.setX((text.getWidth() - number.getWidth()) / 2);
-      text.setY(number.getHeight() + padding / 2);
+      g.number.setX((g.text.getWidth() - g.number.getWidth()) / 2);
+      g.text.setY(g.number.getHeight() + padding / 2);
 
-      g.add(number);
-      g.add(text);
-
-      g.setOffset(text.getWidth() / 2, (text.getY() + text.getHeight()) / 2);
+      g.add(g.number);
+      g.add(g.text);
+      
+      g.setOffset(g.text.getWidth() / 2, (g.text.getY() + g.text.getHeight()) / 2);
       
       return g;
     },
@@ -141,20 +143,33 @@ Kinetic.HUD = (function() {
       var tapsLost = this._createTapsLostNumber(args);
 
       this.add(tapsLost);
+      tapsLost.moveToBottom();
       
+      tapsLost.setScale(0);
+      tapsLost.text.setOpacity(0);
+
       tapsLost.to({
-        duration: TAPS_LOST_STEP_ANIMATION_TIME,
+        duration: TAPS_LOST_ZOOM_IN_TIME,
         easing: 'StrongEaseOut',
         scaleX: 1.5,
         scaleY: 1.5,
         callback: function() {
-          this.to({
-            duration: TAPS_LOST_STEP_ANIMATION_TIME,
-            easing: 'EaseIn',
-            opacity: 0,
-            scaleX: 0.5,
-            scaleY: 0.5,
-            callback: function() { this.destroy(); }
+          tapsLost.text.to({
+            duration: TAPS_LOST_TEXT_FADE_IN_TIME,
+            easing: 'StrongEaseOut',
+            opacity: 1,
+            callback: function() {
+              tapsLost.to({
+                duration: TAPS_LOST_FADE_OUT_TIME,
+                easing: 'EaseIn',
+                opacity: 0,
+                scaleX: tapsLost.getScaleX() * 0.9,
+                scaleY: tapsLost.getScaleY() * 0.9,
+                callback: function() {
+                  tapsLost.destroy();
+                }
+              });
+            }
           });
         }
       });

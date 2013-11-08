@@ -11,7 +11,6 @@ Kinetic.AbstractButton = (function() {
 
       this._delayListening();
       this._playPressSound();
-      this._vibrateDevice();
     },
 
     _delayListening: function() {
@@ -24,10 +23,6 @@ Kinetic.AbstractButton = (function() {
 
     _playPressSound: function() {
       AudioManager.play(Audio.sound.tap.button);
-    },
-
-    _vibrateDevice: function() {
-      Device.vibrate();
     }
   });
 

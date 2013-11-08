@@ -100,9 +100,7 @@ Kinetic.Intro = (function() {
     },
 
     _fadeInOut: function(n, callback) {
-      this._fadeIn(n, function() {
-        this._fadeOut(n, callback.bind(this));
-      }.bind(this));
+      this._fadeIn(n, this._fadeOut.bind(this, n, callback.bind(this)));
     },
 
     _fadeInOutGroupNodes: function(g, callback) {
@@ -151,9 +149,7 @@ Kinetic.Intro = (function() {
           }.bind(this));
         }.bind(this);
       } else {
-        nextClb = function() {
-          this._fadeInOutGroupNodes(this.texts[conf.group], conf.callback.bind(this));
-        }.bind(this);
+        nextClb = this._fadeInOutGroupNodes.bind(this, this.texts[conf.group], conf.callback.bind(this));
       }
       
       $.delay(HINT_DELAY, nextClb);
@@ -163,9 +159,7 @@ Kinetic.Intro = (function() {
       this.darkOverlay.to({
         duration: DARK_OVERLAY_ANIMATION_TIME,
         opacity: DARK_OVERLAY_OPAICTY,
-        callback: function() {
-          this._fadeInOut(this.texts.quickHints, callback.bind(this));
-        }.bind(this)
+        callback: this._fadeInOut.bind(this, this.texts.quickHints, callback.bind(this))
       });
     },
 

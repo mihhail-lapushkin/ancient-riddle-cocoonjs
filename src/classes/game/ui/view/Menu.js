@@ -170,7 +170,7 @@ Kinetic.Menu = (function() {
         width: smallButton,
         height: smallButton,
         image: Image.button.resume,
-        onPress: function() { this.fire('resumed'); }.bind(this)
+        onPress: this.fire.bind(this, 'resumed')
       }));
 
       this.rightSide.add(this.rightSide.next = new Kinetic.SimpleButton({
@@ -180,7 +180,7 @@ Kinetic.Menu = (function() {
         height: bigButton,
         image: Image.button.next,
         visible: false,
-        onPress: function() { this.fire('nextLevel'); }.bind(this)
+        onPress: this.fire.bind(this, 'nextLevel')
       }));
 
       this.rightSide.add(this.rightSide.showRightSide = new Kinetic.SimpleButton({
@@ -198,7 +198,7 @@ Kinetic.Menu = (function() {
         width: bigButton,
         height: bigButton,
         image: Image.button.restart,
-        onPress: function() { this.fire('restart'); }.bind(this)
+        onPress: this.fire.bind(this, 'restart')
       }));
 
       this.rightSide.add(this.rightSide.music = new Kinetic.ToggleButton({
@@ -210,8 +210,8 @@ Kinetic.Menu = (function() {
           enabled: Image.button.music.on,
           disabled: Image.button.music.off
         },
-        onEnable: function() { this.fire('musicMuted', { muted: false }); }.bind(this),
-        onDisable: function() { this.fire('musicMuted', { muted: true }); }.bind(this)
+        onEnable: this.fire.bind(this, 'musicMuted', { muted: false }),
+        onDisable: this.fire.bind(this, 'musicMuted', { muted: true })
       }));
 
       this.rightSide.add(this.rightSide.sound = new Kinetic.ToggleButton({
@@ -223,8 +223,8 @@ Kinetic.Menu = (function() {
           enabled: Image.button.sound.on,
           disabled: Image.button.sound.off
         },
-        onEnable: function() { this.fire('soundMuted', { muted: false }); }.bind(this),
-        onDisable: function() { this.fire('soundMuted', { muted: true }); }.bind(this)
+        onEnable: this.fire.bind(this, 'soundMuted', { muted: false }),
+        onDisable: this.fire.bind(this, 'soundMuted', { muted: true })
       }));
     },
 

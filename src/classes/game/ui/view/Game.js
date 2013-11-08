@@ -165,8 +165,8 @@ Kinetic.Game = (function() {
     },  
 
     _clear: function() {
-      this.circles.removeChildren();
-      this.connections.removeChildren();
+      this.circles.destroyChildren();
+      this.connections.destroyChildren();
     },
 
     _connectCircles: function(circles) {

@@ -7,9 +7,14 @@ Kinetic.Connection = (function() {
       config.drawFunc = this.drawFunc;
 
       Kinetic.Shape.call(this, config);
-
+      
+      this.evtNamespace = '.conn' + this._id;
+      
       this.getCircles().forEach(function(c) {
-        c.on('xChange yChange radiusChange', this.refresh.bind(this));
+        c.on( 'xChange' + this.evtNamespace + ' ' +
+              'yChange' + this.evtNamespace + ' ' +
+              'radiusChange' + this.evtNamespace,
+              this.refresh.bind(this));
       }.bind(this));
 
       this.drawn = true;
@@ -105,8 +110,8 @@ Kinetic.Connection = (function() {
       }
     },
 
-    drawFunc: function(canvas) {
-      var context = canvas.getContext();
+    drawFunc: function(args) {
+      var context = args.canvas.getContext();
       var img = this.markerImg;
 
       this._markers.forEach(function(m) {
@@ -124,6 +129,14 @@ Kinetic.Connection = (function() {
       var circles = this.getCircles();
 
       return circles[0] === c || circles[1] === c;
+    },
+    
+    destroy: function() {
+      Kinetic.Shape.prototype.destroy.call(this);
+      
+      this.getCircles().forEach(function(c) {
+        c.off(this.evtNamespace);
+      }.bind(this));
     }
   });
 

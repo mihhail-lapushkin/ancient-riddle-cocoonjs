@@ -12,9 +12,7 @@ GameController = $.Class({
 
   firstGame: function() {
     UI.fading.longFadeOut(function() {
-      UI.intro.animateIntro(function() {
-        this.newGame(1, 1, this.showHints.bind(this), true);
-      }.bind(this));
+      UI.intro.animateIntro(this.newGame.bind(this, 1, 1, this.showHints.bind(this), true));
     }.bind(this));
   },
 
@@ -37,9 +35,7 @@ GameController = $.Class({
         UI.menu.showMenu({ rightSide: true, showNext: true });
         UI.inactiveDisp.fadeIn();
       } else {
-        UI.game.hud.fadeIn(function() {
-          this.activateGame();
-        }.bind(this));
+        UI.game.hud.fadeIn(this.activateGame.bind(this));
       }
     }.bind(this));
   },
@@ -117,7 +113,8 @@ GameController = $.Class({
   },
 
   disconnectedCircleRemoved: function(e) {
-    var pressesLeft = e.circle.getPressCountLeft();
+    var pressesLeft = e.pressCountLeft;
+    var circlePosition = e.position;
 
     DAO.decreaseTurns(pressesLeft);
     this.saveLayout();
@@ -134,7 +131,7 @@ GameController = $.Class({
 
     if (pressesLeft > 1) {
       UI.game.hud.floatTapsLost({
-        position: e.circle.getPosition(),
+        position: circlePosition,
         number: pressesLeft
       });
     }

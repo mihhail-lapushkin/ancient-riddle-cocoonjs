@@ -19,9 +19,9 @@ Kinetic.GameCircle = (function() {
       this.attrs.ownNeighbours = [];
       this._ownsConnection = {};
 
-      this.on('click tap', this._pressed);
-      this.on('radiusChange', this._syncRadiusWithImageSize);
-      this.on('widthChange heightChange', this._syncSizeWithOffset);
+      this.on('click.circ tap.circ', this._pressed);
+      this.on('radiusChange.circ', this._syncRadiusWithImageSize);
+      this.on('widthChange.circ heightChange.circ', this._syncSizeWithOffset);
 
       this.setRadius(this._calcRadius());
       this._updateImage();
@@ -166,7 +166,7 @@ Kinetic.GameCircle = (function() {
       var currRadius = this.getRadius();
       var expandRadius = !tweening ? currRadius : active ? this._calcRadius(1) : actualRadius;
       var normalRadius = tweening || active ? actualRadius : currRadius;
-
+      
       this.to({
         radius: expandRadius * EXPAND,
         duration: EXPAND_TIME,
@@ -207,16 +207,19 @@ Kinetic.GameCircle = (function() {
         duration: this.getScore() > 1 ? LONG_ROTATE_OUT_TIME : FAST_ROTATE_OUT_TIME,
         callback: function() {
           var parent = this.getParent();
-
+          var pressCountLeft = this.getPressCountLeft();
+          var position = this.getPosition();
+          
           neighs.forEach(function(c) {
             this.disconnect(c);
             c.setListening(true);
           }.bind(this));
 
           this.destroy();
-
+          
           parent.fire((pressed ? 'pressed' : 'disconnected') + 'Removed', {
-            circle: this,
+            pressCountLeft: pressCountLeft,
+            position: position,
             neighbours: neighs
           });
         }
@@ -257,6 +260,12 @@ Kinetic.GameCircle = (function() {
     
     simulatePress: function() {
       this._pressed({});
+    },
+    
+    destroy: function() {
+      Kinetic.Image.prototype.destroy.call(this);
+      
+      this.off('.circ');
     }
   });
 

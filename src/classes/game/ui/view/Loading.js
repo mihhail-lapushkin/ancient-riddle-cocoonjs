@@ -3,6 +3,8 @@ Kinetic.Loading = (function() {
   var BAR_Y = 0.8;
   var BAR_WIDTH = 0.7;
   var BAR_HEIGHT = 2.2;
+  
+  var CONTENT_FADE_IN_TIME = 1.5;
 
   var Class = $.Class({
     _init_: function(config) {
@@ -24,27 +26,41 @@ Kinetic.Loading = (function() {
         height: h,
         fill: 'black'
       }));
+      
+      this.add(this.content = new Kinetic.Group({
+        width: w,
+        height: h,
+        opacity: 0
+      }));
 
-      this.add(this.text = new Kinetic.ProportionalImage({
+      this.content.add(this.content.text = new Kinetic.ProportionalImage({
         height: unit * TEXT_HEIGHT,
         image: Image.text.loading
       }));
 
-      this.add(this.bar = new Kinetic.ProgressBar({
+      this.content.add(this.content.bar = new Kinetic.ProgressBar({
         y: h * BAR_Y,
         width: w * BAR_WIDTH,
         height: unit * BAR_HEIGHT,
         reversed: true
       }));
 
-      this.center(this.text);
-      this.centerHorizontally(this.bar);
+      this.content.center(this.content.text);
+      this.content.centerHorizontally(this.content.bar);
     },
 
     _percentChanged: function(evt) {
-      this.text.setOpacity(1 - evt.newVal);
-      this.bar.setPercent(1 - evt.newVal);
+      this.content.text.setOpacity(1 - evt.newVal);
+      this.content.bar.setPercent(1 - evt.newVal);
       this.getParent().draw();
+    },
+    
+    fadeIn: function() {
+      this.content.to({
+        duration: CONTENT_FADE_IN_TIME,
+        easing: 'EaseOut',
+        opacity: 1
+      });
     },
 
     destroy: function() {
