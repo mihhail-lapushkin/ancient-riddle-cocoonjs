@@ -1,11 +1,52 @@
-## Ancient Riddle [ [Live Demo](http://www.ignite.ee/html5/ancient-riddle/index.html) ] [ [Android](https://play.google.com/store/apps/details?id=ee.ignite.ancientriddle) ] [ [iOS](https://itunes.apple.com/us/app/ancient-riddle/id670588670) ]
-### An HTML5 mobile game
-![screenshot](http://s17.postimage.org/maw37811b/Screen_Shot_2013_03_08_at_18_47_42.png)
+# Queuer
 
-The proof-of-concept game, which shows that HTML5 Canvas can be used to create real mobile games. It runs in the desktop browser, Android and iOS. To package it for mobile platforms I used [CocoonJS](http://www.ludei.com/tech/cocoonjs).
+> Intuitive flow control library for asynchronous code
 
-Read my [blog post](http://mihhaillapushkin.wordpress.com/2013/03/11/the-makings-of-a-mobile-canvas-game) for more details about this project.
+# How to use
 
-See also:
-* The [first version](https://github.com/mihhail-lapushkin/Solve-Me) of the game
-* [JavaScript compiler](https://github.com/mihhail-lapushkin/CocoonJS-Compiler) that was created for this project
+## Parallel execution
+
+### Visual
+```
+S
+V
+V
+V
+V
+V
+E
+```
+### Code
+
+```js
+_.concurrent({
+  first: function (cb) {
+    setTimeout(function () {
+      cb(null, 'boom');
+    }, 1000);
+  },
+  second: function (cb) {
+    cb(null, 'foo');
+  }
+}, function (err, results) {
+  console.log(results);
+  // <- { first: 'boom', second: 'foo' }
+});
+```
+
+# How to extend
+
+TBD
+
+# How to build
+
+TBD
+
+# API docs
+
+TBD
+
+# Similar projects
+
+* [async](https://github.com/caolan/async)
+* * [async](https://github.com/caolan/async)
