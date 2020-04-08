@@ -1,4 +1,4 @@
-## Ancient Riddle [ [iOS](https://itunes.apple.com/us/app/ancient-riddle/id670588670) ]
+## Ancient Riddle
 ### An HTML5 mobile game
 ![screenshot](http://s17.postimage.org/maw37811b/Screen_Shot_2013_03_08_at_18_47_42.png)
 
